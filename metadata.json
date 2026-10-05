@@ -1,0 +1,6 @@
+{
+  "name": "CORNUS — Contemporary Luxury Fashion",
+  "description": "Minimal, elegant, editorial fashion clothing brand crafted for modern silhouettes and everyday distinction.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
