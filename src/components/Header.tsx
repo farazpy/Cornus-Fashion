@@ -137,7 +137,7 @@ export const Header: React.FC = () => {
                 />
               </button>
               <span className="text-[10px] tracking-wider text-black/45 font-mono border border-black/10 px-1.5 py-0.5 rounded-sm">
-                v2.71.0
+                v2.73.0
               </span>
             </div>
 
