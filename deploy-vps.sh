@@ -48,14 +48,15 @@ if [ ! -f .env ]; then
     echo -e "${YELLOW}Please remember to configure your MySQL credentials in .env!${NC}"
   else
     cat <<EOF > .env
-PORT=3000
+NODE_ENV=production
+PORT=3015
 DB_HOST=localhost
 DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=your_db_password
 DB_NAME=cornus_db
 EOF
-    echo -e "${GREEN}✓ Created default .env template.${NC}"
+    echo -e "${GREEN}✓ Created default .env template with PORT=3015 and NODE_ENV=production.${NC}"
   fi
 else
   echo -e "${GREEN}✓ Existing .env detected.${NC}"
@@ -70,7 +71,7 @@ echo -e "${YELLOW}[5/6] Building production frontend with Vite...${NC}"
 npm run build
 
 # 6. PM2 Launch
-echo -e "${YELLOW}[6/6] Launching CORNUS application with PM2...${NC}"
+echo -e "${YELLOW}[6/6] Launching CORNUS application with PM2 on PORT 3015...${NC}"
 if pm2 list | grep -q "cornus-fashion"; then
   echo -e "${YELLOW}Reloading running PM2 process 'cornus-fashion'...${NC}"
   pm2 restart cornus-fashion --update-env
@@ -83,7 +84,7 @@ fi
 pm2 save || true
 
 echo -e "\n${BOLD}${GREEN}=================================================================${NC}"
-echo -e "${BOLD}${GREEN} ✓ CORNUS FASHION SUCCESSFULLY INSTALLED & RUNNING ON PORT 3000! ${NC}"
+echo -e "${BOLD}${GREEN} ✓ CORNUS FASHION SUCCESSFULLY INSTALLED & RUNNING ON PORT 3015! ${NC}"
 echo -e "${BOLD}${GREEN}=================================================================${NC}\n"
 
 echo -e "${BOLD}Useful Commands:${NC}"
@@ -101,7 +102,7 @@ server {
     client_max_body_size 50M;
 
     location / {
-        proxy_pass http://127.0.0.1:3000;
+        proxy_pass http://127.0.0.1:3015;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';

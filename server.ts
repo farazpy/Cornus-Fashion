@@ -3186,7 +3186,7 @@ app.get('/api/admin/export/:resource', requireAdmin, async (req, res) => {
 // --- VITE DEV MIDWARE & PRODUCTION BUILD MOUNT ---
 
 const isProd = process.env.NODE_ENV === 'production';
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : (isProd ? 3015 : 3000);
 
 if (!isProd) {
   const { createServer: createViteServer } = await import('vite');
